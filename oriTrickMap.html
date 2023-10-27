@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+<style>
+:root {
+	--background-color: #121212;
+	--list-item-hover-color: #222222;
+	--list-item-height: 40px;
+	--href-color: blue;
+	--href-hover-color: green;
+	--trick-color-pickup: green;
+	--trick-color-connection: blue;
+	--trick-color-other: grey;
+}
+
+html, body { margin: 0; height: 100%; width: 100%; overflow: hidden; background: var(--background-color); }
+body { position: relative; }
+#root-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; }
+
+#image-container { display: flex; position: relative; overflow: hidden; }
+#zoom-container { transform-origin: 0px 0px; transform: scale(1) translate(0px, 0px); user-select: none; cursor: pointer; }
+#background-image { height: 100vh; }
+#coordinate-span { position: absolute; top: 5px; left: 5px; color: grey; pointer-events: none; }
+#image-canvas { position: absolute; top: 0px; left: 0px; pointer-events: none; }
+
+#sidebar { flex: 1 1 0; display: flex; flex-direction: column; color: white; }
+#trick-list { height:40vh; display: flex; flex-direction: column; width: 100%; overflow-y: auto; overflow-x: hidden; cursor: pointer; }
+#trick-list:empty::before { content: 'click on the map'; height: var(--list-item-height); line-height: var(--list-item-height); }
+
+.trick-panel {
+	height: var(--list-item-height);
+	line-height: var(--list-item-height);
+	margin-bottom: 2px;
+	display: flex;
+	&:hover { background: var(--list-item-hover-color); }
+}
+.trick-tags-marker { width: 10px; height: var(--list-item-height); background: var(--trick-color-other); margin-right: 5px; }
+.trick-tags-connection { background: var(--trick-color-connection); }
+.trick-tags-pickup { background: var(--trick-color-pickup); }
+
+#trick-details-variants { width: 100%; overflow-y: auto; overflow-x: hidden; }
+summary {
+	cursor: pointer;
+	height: var(--list-item-height);
+	line-height: var(--list-item-height);
+	&:hover { background: var(--list-item-hover-color); }
+	overflow-y: hidden;
+}
+details p { margin-left: 20px; }
+.trick-details-anchor { display: inline-block; height: var(--list-item-height); margin-right: 5px; }
+.trick-details-embed-button { display: inline-block; height: var(--list-item-height); margin-right: 5px; background: none; border: none; padding: 0; }
+
+.trick-details-icon {
+	vertical-align: sub;
+	color: var(--href-color);
+	&:hover { color: var(--href-hover-color); }
+}
+
+#embed-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; pointer-events: none; }
+video { pointer-events: all; background: var(--background-color); }
+.embedded-video-close { position: absolute; top: 5px; right: 5px; pointer-events: all; color: grey; cursor: pointer; font-size: 32px; }
+.embedded-video-close:hover { color: lightgrey; background: grey; }
+</style>
+
+<title>Ori trick map</title>
+</head>
+<body>
+
+<div id="root-container">
+	<div id="image-container">
+		<div id="zoom-container">
+			<img id="background-image" alt="" src="https://oristorage.blob.core.windows.net/other/map.jpg" />
+			<canvas id="image-canvas"></canvas>
+		</div>
+		<span id="coordinate-span"></span>
+	</div>
+
+	<div id="sidebar">
+		<div id="trick-list"></div>
+		<div id="trick-details">
+			<p id="trick-details-title"></p>
+			<div id="trick-details-variants"></div>
+		</div>
+	</div>
+</div>
+
+<div id="embed-container"></div>
+
+</body>
+
+<script type="text/javascript">
+
+let allTricks = [];
+
+const maxTricks = 20;
+const trickSelectorMinRadius = 40;
+const trickSelectorMaxRadius = 200;
+
+const mapLeft = 371;
+const mapTop = 327;
+const mapRight = 4741;
+const mapBottom = 3424;
+const gameLeft = -1075;
+const gameTop = 867;
+const gameRight = 914;
+const gameBottom = -544;
+const scaleX = (mapLeft - mapRight) / (gameLeft - gameRight);
+const scaleY = (mapTop - mapBottom) / (gameTop - gameBottom);
+
+const img = document.getElementById("background-image");
+const trickList = document.getElementById("trick-list");
+const trickDetailsTitle = document.getElementById("trick-details-title");
+const trickDetailsVariants = document.getElementById("trick-details-variants");
+const embedContainer = document.getElementById("embed-container");
+
+function imgToGameCoordinates(imgX, imgY) {
+	const unzoomedX = (imgX - zoom.x) / zoom.scale;
+	const unzoomedY = (imgY - zoom.y) / zoom.scale;
+	const x = unzoomedX * img.naturalWidth / img.width;
+	const y = unzoomedY * img.naturalHeight / img.height;
+	const gameX = (x - mapLeft) / scaleX + gameLeft;
+	const gameY = (y - mapTop) / scaleY + gameTop;
+	return [gameX, gameY];
+}
+
+function gameToImgCoordinates(gameX, gameY) {
+	const mapX = (gameX - gameLeft) * scaleX + mapLeft;
+	const mapY = (gameY - gameTop) * scaleY + mapTop;
+	const x = mapX * img.width / img.naturalWidth;
+	const y = mapY * img.height / img.naturalHeight;
+	return [x, y];
+}
+
+function paintTrickDots() {
+	const pi2 = Math.PI * 2;
+	const radius = 3;
+
+	const canvas = document.getElementById("image-canvas");
+	canvas.width = img.width;
+	canvas.height = img.height;
+	var ctx = canvas.getContext("2d");
+	ctx.fillStyle = 'white';
+	ctx.beginPath();
+
+	allTricks.forEach(t => {
+		const mapCoordinates = gameToImgCoordinates(t.x, t.y);
+		const x = mapCoordinates[0];
+		const y = mapCoordinates[1];
+		ctx.moveTo(x + radius, y);
+		ctx.arc(x, y, radius, 0, pi2);
+	});
+
+	ctx.fill();
+}
+
+function createTrickPanel(t) {
+	const i = t.i;
+	var tags = t.t.variants.flatMap(v => v.tags.split(',').map(s => s.trim()));
+	const tagClasses = tags.map(s => `trick-tags-${s}`).join(' ');
+	const title = t.t.title;
+	return `<div class='trick-panel' data-trickindex='${i}'><div class='trick-tags-marker ${tagClasses}'></div>${title}</div>`;
+}
+
+function createVariantElement(v) {
+	const url = v.url;
+	const req = v.requirements;
+	const desc = v.notes;
+	const icon = "<i class='material-symbols-outlined trick-details-icon'>movie</i>"
+	let a = "";
+	if (!url.endsWith(".mp4"))
+		a = `<a class='trick-details-anchor' href='${url}' target='_blank'>${icon}</a>`;
+	else
+		a = `<button class='trick-details-embed-button'>${icon}</button>`;
+	
+	return `<details><summary>${a}${req}</summary><p>${desc}</p></details>`;
+}
+
+function showEmbeddedVideo(v) {
+	const width = embedContainer.clientWidth;
+	const height = embedContainer.clientHeight;
+	const sv = `<video width="${width}" height="${height}" class="embedded-video" controls autoplay loop muted><source src="${v.url}" type="video/mp4"></video>`;
+	const sb = "<i class='material-symbols-outlined embedded-video-close'>close</i>";
+	embedContainer.innerHTML = sv + sb;
+	const video = embedContainer.children[0];
+	video.addEventListener("keydown", (e) => {
+		if (e.keyCode === 27) embedContainer.innerHTML = "";
+	});
+	video.focus();
+	const closeIcon = embedContainer.children[1];
+	closeIcon.addEventListener("click", () => { embedContainer.innerHTML = ""; });
+}
+
+function showTrickDetails(i) {
+	const trick = allTricks[i];
+	trickDetailsTitle.innerHTML = trick.title;
+	
+	const content = trick.variants.map(createVariantElement).join('');
+	trickDetailsVariants.innerHTML = content;
+	
+	for (let i = 0; i < trick.variants.length; i++) {
+		const variantElement = trickDetailsVariants.children[i];
+		const embedButton = variantElement.querySelector(".trick-details-embed-button");
+		if (embedButton) {
+			const variant = trick.variants[i];
+			embedButton.addEventListener("click", () => showEmbeddedVideo(variant));
+		}
+	}
+}
+
+function populateTrickList(tricks) {
+	const content = tricks.map(createTrickPanel).join('');
+	trickList.innerHTML = content;
+
+	for (let i = 0; i < trickList.children.length; i++) {
+		const c = trickList.children[i];
+		c.addEventListener("click", function() { showTrickDetails(c.dataset.trickindex); });
+	}
+}
+
+function showTricksAtClick(e) {
+	const game = imgToGameCoordinates(e.pageX - img.offsetLeft, e.pageY - img.offsetTop);
+	const x = game[0];
+	const y = game[1];
+
+	const tricksWithDistance = allTricks.map((t, i) => {
+		const a = x - t.x;
+		const b = y - t.y;
+		const d = Math.sqrt(a*a + b*b);
+		return {d, i, t};
+	}).sort((a, b) => { return a.d - b.d });
+
+	const r = [];
+	tricksWithDistance.forEach(t => {
+		if (t.d < trickSelectorMinRadius) r.push(t);
+		else if (t.d < trickSelectorMaxRadius && r.length < maxTricks) r.push(t);
+	});
+	populateTrickList(r);
+}
+
+function updateCoordinates(e) {
+	const game = imgToGameCoordinates(e.pageX - img.offsetLeft, e.pageY - img.offsetTop);
+	const text = "[" + Math.round(game[0]) + ", " + Math.round(game[1]) + "]";
+	document.getElementById("coordinate-span").innerHTML = text;
+};
+
+const zoomContainer = document.getElementById("zoom-container");
+const zoom = { scale: 1, panning: false, x: 0, y: 0, x0: 0, y0: 0, px: 0, py: 0 };
+
+function updateTransform() {
+	zoomContainer.style.transform = `translate(${zoom.x}px, ${zoom.y}px) scale(${zoom.scale})`;
+}
+
+function onMouseUp(e) {
+	zoom.panning = false;
+	const dx = zoom.x - zoom.px;
+	const dy = zoom.y - zoom.py;
+	if (dx*dx + dy*dy > 500) return;
+	zoom.x = zoom.px;
+	zoom.y = zoom.py;
+	updateTransform();
+	
+	showTricksAtClick(e);
+}
+
+function onMouseMove(e) {
+	updateCoordinates(e);
+	
+	e.preventDefault();
+	if (!zoom.panning) return;
+	zoom.x = e.clientX - zoom.x0;
+	zoom.y = e.clientY - zoom.y0;
+	updateTransform();
+}
+
+async function loadTricks() {
+	let json;
+	let local = false;
+	try {
+		local = location.pathname.match(/^\/[A-Z]\:\//);
+		if (local) {
+			const r = await fetch("trickDefinitions.json");
+			json = await r.text();
+			console.log("using local trick definitions");
+		}
+	} catch (e) {
+		local = false;
+	}
+	
+	if (!local) {
+		const r = await fetch("https://oristorage.blob.core.windows.net/other/trickDefinitions.json");
+		json = await r.text();
+	}
+	
+	try {
+		allTricks = JSON.parse(json);
+		if (img.complete) paintTrickDots();
+		else img.addEventListener('load', paintTrickDots);
+	}
+	catch (e) {
+		console.error(e);
+	}
+}
+
+zoomContainer.onmousedown = (e) => {
+	e.preventDefault();
+	zoom.px = zoom.x;
+	zoom.py = zoom.y;
+	zoom.x0 = e.clientX - zoom.x;
+	zoom.y0 = e.clientY - zoom.y;
+	zoom.panning = true;
+}
+
+zoomContainer.onmouseleave = (e) => zoom.panning = false;
+
+zoomContainer.onwheel = (e) => {
+	e.preventDefault();
+	const xs = (e.clientX - zoom.x) / zoom.scale;
+	const ys = (e.clientY - zoom.y) / zoom.scale;
+	const delta = e.wheelDelta ? e.wheelDelta : -e.deltaY;
+	(delta > 0) ? (zoom.scale *= 1.2) : (zoom.scale /= 1.2);
+	if (zoom.scale > 0.9 && zoom.scale < 1.1) zoom.scale = 1;
+	zoom.x = e.clientX - xs * zoom.scale;
+	zoom.y = e.clientY - ys * zoom.scale;
+	updateTransform();
+}
+
+window.addEventListener("resize", paintTrickDots);
+
+img.addEventListener("mousemove", onMouseMove);
+img.addEventListener("mouseup", onMouseUp);
+
+loadTricks();
+
+</script>
+
+</html> 

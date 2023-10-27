@@ -1,0 +1,563 @@
+[
+	{
+		"title": "misty keydupe",
+		"x": -900,
+		"y": -20,
+		"variants":
+		[
+			{
+				"tags": "keydupe",
+				"url": "https://streamable.com/5sjs0u",
+				"requirements": "1 cflame, 1 cdash, 1 ks, 1 save, combat",
+				"notes": "cflame redirect spider shot to top left, then cdash redirect to ks door"
+			}
+		]
+	},{
+		"title": "horu fields hidden xp",
+		"x": 100,
+		"y": -40,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://streamable.com/1wiyf7",
+				"requirements": "djump, stomp, updash, 2 damage, combat",
+				"notes": "clear enemies, wait for drop slime to respawn, then updash to drop slime and stomp on it"
+			},{
+				"tags": "pickup",
+				"url": "https://streamable.com/mbmues",
+				"requirements": "wjump, djump",
+				"notes": "wrap around the right wall with precise jumps"
+			},{
+				"tags": "pickup",
+				"url": "https://streamable.com/15qulk",
+				"requirements": "djump, stomp",
+				"notes": "move the rock with stomp, then jump to the left of the slime and bounce off of it with stomp"
+			}
+		]
+	},{
+		"title": "horu fields plant",
+		"x": 110,
+		"y": 20,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://streamable.com/dy83kw",
+				"requirements": "djump, grenade",
+				"notes": "throw grenade, then jump to right to load the plant"
+			}
+		]
+	},{
+		"title": "caverns AC",
+		"x": -220,
+		"y": -180,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://streamable.com/yh07rs",
+				"requirements": "bash",
+				"notes": "bash down to send projectile up, then bash again without jumping"
+			}
+		]
+	},{
+		"title": "destroyed horu fields climb",
+		"x": 30,
+		"y": 10,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/pd87us",
+				"requirements": "wjump, djump, stomp",
+				"notes": "lure fronkey to the left, then use right wall to gain height, then stomp bounce and stomp stall to gain more height"
+			}
+		]
+	},{
+		"title": "cross horu fields",
+		"x": 110,
+		"y": -10,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/jzagdz",
+				"requirements": "6+ cdash",
+				"notes": "carry baneling to the left with cdashes, rjump and then cdash after baneling dies"
+			}
+		]
+	},{
+		"title": "cross horu fields in reverse",
+		"x": 160,
+		"y": -20,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/zqke53",
+				"requirements": "5+ cdash",
+				"notes": "launch baneling over horu fields with cdashes and follow after it"
+			}
+		]
+	},{
+		"title": "reverse forlorn approach",
+		"x": -460,
+		"y": -160,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/9d3je9",
+				"requirements": "2 cdash, 1 rjump",
+				"notes": "launch baneling over ledge with cdash, chase after it with cdash and immediately rjump"
+			}
+		]
+	},{
+		"title": "whitebox",
+		"x": -350,
+		"y": -20,
+		"variants":
+		[
+			{
+				"tags": "weird",
+				"url": "https://streamable.com/0yii3e",
+				"requirements": "nothing",
+				"notes": "there is a piece of rectangular collision that disappears when you get close"
+			}
+		]
+	},{
+		"title": "sorrow exit",
+		"x": -500,
+		"y": 150,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/iau9ho",
+				"requirements": "wjump (optional), djump, stomp, 2 damage",
+				"notes": "lure bird down, take damage from bird as you stomp and use iframes from that to jump off spikes"
+			},{
+				"tags": "connection",
+				"url": "https://streamable.com/e4dmui",
+				"requirements": "bash, grenade",
+				"notes": "throw grenade, then jump after it and bash off of it"
+			}
+		]
+	},{
+		"title": "sorrow HC",
+		"x": -610,
+		"y": 300,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://streamable.com/mza6lu",
+				"requirements": "broken roof to HC, sein, djump, stomp",
+				"notes": "look up and jump to lure bird down, then lure it to the side to get a good angle, then stomp bounce off bird"
+			},{
+				"tags": "pickup",
+				"url": "https://streamable.com/drbv99",
+				"requirements": "tjump, stomp",
+				"notes": "push frog, stomp from further away, let it break wall and roof for you"
+			}
+		]
+	},{
+		"title": "open sorrow main shaft",
+		"x": -480,
+		"y": 320,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/geoe8t",
+				"requirements": "glide, rjump",
+				"notes": "push frog to the right, jump over and rjump, glide for a moment at the very top"
+			}
+		]
+	},{
+		"title": "cross misty laser pit",
+		"x": -850,
+		"y": -60,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/wc38be",
+				"requirements": "dbash, airdash",
+				"notes": "juggle frog with dbashes and airdash to cross the pit"
+			}
+		]
+	},{
+		"title": "leave spider sac area",
+		"x": 110,
+		"y": -150,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/lnu4dm",
+				"requirements": "broken spider sac wall, sein, bash",
+				"notes": "lure swarm enemy, split when it stops moving, then drop down with it and bash off of it"
+			},{
+				"tags": "connection",
+				"url": "https://streamable.com/h8b7sw",
+				"requirements": "bash, grenade",
+				"notes": "throw a grenade, then jump after it and bash off of it"
+			}
+		]
+	},{
+		"title": "blackroot right laser AC",
+		"x": 390,
+		"y": -420,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://streamable.com/a5hp5x",
+				"requirements": "wjump, cflame, glide, soul link, 1 damage",
+				"notes": "respawn, redirect slime projectile, use that to gain iframes and cross the spike pit"
+			}
+		]
+	},{
+		"title": "grotto vault plant",
+		"x": 490,
+		"y": -400,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://streamable.com/y9ln1t",
+				"requirements": "airdash, blue breakage",
+				"notes": "jump and airdash to reach pillar"
+			}
+		]
+	},{
+		"title": "above iceless AC",
+		"x": 330,
+		"y": -60,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://streamable.com/8ayy0q",
+				"requirements": "wjump, stomp, airdash",
+				"notes": "stomp igor, airdash to wall"
+			}
+		]
+	},{
+		"title": "right grotto EC",
+		"x": 550,
+		"y": -350,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://streamable.com/eteham",
+				"requirements": "wjump or climb, stomp, 1 damage",
+				"notes": "lure fronkey down, move left, jump and take the damage, stomp bounce on fronkey"
+			}
+		]
+	},{
+		"title": "misty KS 3",
+		"x": -890,
+		"y": -50,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://streamable.com/6wk9sj",
+				"requirements": "glide, updash",
+				"notes": "dash through the mushroom as it appears, grab the mushroom from the right, updash and glide to KS"
+			},{
+				"tags": "pickup",
+				"url": "https://streamable.com/4k5p60",
+				"requirements": "airdash",
+				"notes": "follow the entire sequence of appearing mushrooms, refresh airdash by touching and leaving a wall"
+			}
+		]
+	},{
+		"title": "XP left of grotto TP",
+		"x": -890,
+		"y": -50,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://streamable.com/e6u07s",
+				"requirements": "bash, grenade",
+				"notes": "throw grenade, then jump after it and bash off of it"
+			}
+		]
+	},{
+		"title": "climb out of lower blackroot",
+		"x": 250,
+		"y": -380,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/1453ik",
+				"requirements": "dbash",
+				"notes": "double bash frog to the right of the spike pit, then double bash its projectile"
+			}
+		]
+	},{
+		"title": "swamp drain to grotto",
+		"x": 510,
+		"y": -150,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/s6ndnz",
+				"requirements": "dash",
+				"notes": "stand on the corner of the rock to get a dash ramp and combine it with a dash glide"
+			}
+		]
+	},{
+		"title": "stomp tree exit",
+		"x": 510,
+		"y": -150,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/2w9hip",
+				"requirements": "bash, stomp, clean water",
+				"notes": "beat the rhino"
+			},{
+				"tags": "connection",
+				"url": "https://streamable.com/sxbzu5",
+				"requirements": "bash, grenade",
+				"notes": "throw 3 grenades and bash off of them"
+			}
+		]
+	},{
+		"title": "break R1 wall from inside",
+		"x": 110,
+		"y": 390,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/rlp78r",
+				"requirements": "cflame, verticality",
+				"notes": "push the baneling off the ledge with cflame"
+			}
+		]
+	},{
+		"title": "FACS",
+		"x": -420,
+		"y": -80,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://streamable.com/p6jxgv",
+				"requirements": "bash, glide, wind",
+				"notes": "bash and push the frog as close to the spikes as possible, then trigger a shot from where the tight shaft begins and redirect it with bash. Gliding too high will despawn the frog."
+			}
+		]
+	},{
+		"title": "above death gauntlet first peg",
+		"x": 270,
+		"y": -160,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/2ff39a",
+				"requirements": "dash, stomp",
+				"notes": "dashglide to the peg"
+			}
+		]
+	},{
+		"title": "above death gauntlet from spider lake",
+		"x": 300,
+		"y": -180,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/7u7gq4",
+				"requirements": "stomp, 2 damage",
+				"notes": "lure fronkey, tank a hit and bounce with stomp"
+			}
+		]
+	},{
+		"title": "glades keydupe",
+		"x": -20,
+		"y": -220,
+		"variants":
+		[
+			{
+				"tags": "keydupe",
+				"url": "https://streamable.com/vompkm",
+				"requirements": "stomp, dash, 1 KS",
+				"notes": "save rather far away, redirect slime projectile with stomp and get hit by it next to the door"
+			}
+		]
+	},{
+		"title": "break valley map wall",
+		"x": -410,
+		"y": -170,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/14fccs",
+				"requirements": "grenade",
+				"notes": "lure baneling, hide below ledge and throw grenade as it passes over you"
+			}
+		]
+	},{
+		"title": "climb to L1/R1",
+		"x": 70,
+		"y": 380,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/yynxzi",
+				"requirements": "bash, grenade",
+				"notes": "stay calm and bash things"
+			}
+		]
+	},{
+		"title": "misty first pickup",
+		"x": -680,
+		"y": -30,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://streamable.com/raqa5r",
+				"requirements": "1 rjump, 1 cdash, combat",
+				"notes": "push frog, rjump to get a high shot, redirect it with cdash"
+			}
+		]
+	},{
+		"title": "AC above first HC",
+		"x": -50,
+		"y": -170,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://streamable.com/j382kr",
+				"requirements": "wjump or climb, stomp, 2 damage, access to gladeser or valley fronkey",
+				"notes": "lure a high health fronkey from gladeser or valley entry to first HC, tank damage and stomp bounce off of fronkey"
+			}
+		]
+	},{
+		"title": "grotto lasers",
+		"x": 440,
+		"y": -150,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/wktbsy",
+				"requirements": "none",
+				"notes": "time your drop precisely and run"
+			}
+		]
+	},{
+		"title": "swamp drain access",
+		"x": 590,
+		"y": -150,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/r4gii0",
+				"requirements": "stomp",
+				"notes": "push frog over, redirect projectile with stomp"
+			},{
+				"tags": "connection",
+				"url": "https://streamable.com/ss1jqn",
+				"requirements": "stomp",
+				"notes": "push frog over, redirect projectile with grenade"
+			}
+		]
+	},{
+		"title": "above cjump tree AC",
+		"x": -640,
+		"y": 480,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://streamable.com/lzw7qt",
+				"requirements": "djump, stomp",
+				"notes": "push frog over, bounce with stomp"
+			}
+		]
+	},{
+		"title": "caverns KS 4",
+		"x": -210,
+		"y": -140,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://streamable.com/on60qc",
+				"requirements": "climb",
+				"notes": "precise climb ramp"
+			}
+		]
+	},{
+		"title": "left sorrow reverse KS door",
+		"x": -590,
+		"y": 390,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/3mq4ia",
+				"requirements": "climb, cjump",
+				"notes": "cjump/climb to the door from the back"
+			}
+		]
+	},{
+		"title": "reverse fronkey walk",
+		"x": 270,
+		"y": -310,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/6g6u1m",
+				"requirements": "verticality",
+				"notes": "get fronkey over spikes, then cross cushers, fronkey will follow just fine on its own. Then just barely enter aggro range and leave it immediately to force shorthops by fronkey"
+			}
+		]
+	},{
+		"title": "butter cell lure",
+		"x": 300,
+		"y": -100,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://streamable.com/90eiuq",
+				"requirements": "none",
+				"notes": "fronkey to the right of bounce pad, jump late off bounce pad, make fronkey land on it, jump straight from bounce pad on top of the peg"
+			}
+		]
+	},{
+		"title": "iceless",
+		"x": 360,
+		"y": -110,
+		"variants":
+		[
+			{
+				"tags": "pickup, connection",
+				"url": "https://oristorage.blob.core.windows.net/videos/iceless_cl_ad.mp4",
+				"requirements": "climb, airdash",
+				"notes": "ramp into dash glide, climb the wall, then updash or airdash"
+			}
+		]
+	}
+]
