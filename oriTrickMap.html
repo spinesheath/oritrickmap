@@ -27,6 +27,10 @@ body { position: relative; }
 #image-canvas { position: absolute; top: 0px; left: 0px; pointer-events: none; }
 
 #sidebar { flex: 1 1 0; display: flex; flex-direction: column; color: white; }
+
+#filter-container { width: 100%; overflow-y: auto; overflow-x: hidden; }
+#filter-container input { margin-left: 10px; }
+
 #trick-list { height:40vh; display: flex; flex-direction: column; width: 100%; overflow-y: auto; overflow-x: hidden; cursor: pointer; }
 #trick-list:empty::before { content: 'click on the map'; height: var(--list-item-height); line-height: var(--list-item-height); }
 
@@ -83,6 +87,12 @@ video { pointer-events: all; background: var(--background-color); }
 	</div>
 
 	<div id="sidebar">
+		<div id="filter-container">
+			<details id="filter-details">
+				<summary id="filter-summary"></summary>
+				<div id="filter-list"></div>
+			</details>
+		</div>
 		<div id="trick-list"></div>
 		<div id="trick-details">
 			<p id="trick-details-title"></p>
@@ -116,6 +126,8 @@ const scaleY = (mapTop - mapBottom) / (gameTop - gameBottom);
 
 const img = document.getElementById("background-image");
 const trickList = document.getElementById("trick-list");
+const filterSummary = document.getElementById("filter-summary");
+const filterList = document.getElementById("filter-list");
 const trickDetailsTitle = document.getElementById("trick-details-title");
 const trickDetailsVariants = document.getElementById("trick-details-variants");
 const embedContainer = document.getElementById("embed-container");
@@ -161,11 +173,9 @@ function paintTrickDots() {
 }
 
 function createTrickPanel(t) {
-	const i = t.i;
-	var tags = t.t.variants.flatMap(v => v.tags.split(',').map(s => s.trim()));
-	const tagClasses = tags.map(s => `trick-tags-${s}`).join(' ');
+	const tagClasses = t.t.tags.map(s => `trick-tags-${s}`).join(' ');
 	const title = t.t.title;
-	return `<div class='trick-panel' data-trickindex='${i}'><div class='trick-tags-marker ${tagClasses}'></div>${title}</div>`;
+	return `<div class='trick-panel' data-trickindex='${t.i}'><div class='trick-tags-marker ${tagClasses}'></div>${title}</div>`;
 }
 
 function createVariantElement(v) {
@@ -219,6 +229,8 @@ function enrichTricks() {
 			v.isStreamable = v.url && v.url.startsWith("https://streamable.com");
 			v.canEmbed = v.isMp4 || v.isStreamable;
 		});
+		
+		t.tags = t.variants.flatMap(v => v.tags.split(',').map(s => s.trim()));
 	});
 }
 
@@ -310,6 +322,35 @@ function onMouseMove(e) {
 	updateTransform();
 }
 
+function distinct(a) {
+  return [...new Set(a)];
+}
+
+function updateFilterSummary() {
+	let selected = [];
+	for (var i = 0; i < filterList.children.length; i++) {
+		const c = filterList.children[i];
+		if (c.checked) {
+			selected.push(c.dataset.tag);
+		}
+	}
+	if (selected.length) {
+		filterSummary.innerHTML = selected.join(", ");
+	} else {
+		filterSummary.innerHTML = "no filters selected";
+	}
+}
+
+function loadFilters() {
+	const allTags = distinct(allTricks.flatMap(t => t.tags)).sort();
+	const checkboxes = allTags.map(t => `<input type="checkbox" data-tag="${t}">${t}</input>`).join('');
+	filterList.innerHTML = checkboxes;
+	for (var i = 0; i < filterList.children.length; i++) {
+		filterList.children[i].addEventListener("click", updateFilterSummary);
+	}
+	updateFilterSummary();
+}
+
 async function loadTricks() {
 	let json;
 	let local = false;
@@ -332,6 +373,7 @@ async function loadTricks() {
 	try {
 		allTricks = JSON.parse(json);
 		enrichTricks();
+		loadFilters();
 		if (img.complete) paintTrickDots();
 		else img.addEventListener('load', paintTrickDots);
 	}

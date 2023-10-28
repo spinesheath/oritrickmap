@@ -4,7 +4,7 @@
 		"variants":
 		[
 			{
-				"tags": "general doublejump",
+				"tags": "general, doublejump",
 				"requirements": "double jump",
 				"notes": "Double jump, touch a wall, hold away from the wall and double jump again after leaving the wall. Repeat."
 			}
