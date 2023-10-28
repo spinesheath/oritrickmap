@@ -173,9 +173,9 @@ function paintTrickDots() {
 }
 
 function createTrickPanel(t) {
-	const tagClasses = t.t.tags.map(s => `trick-tags-${s}`).join(' ');
-	const title = t.t.title;
-	return `<div class='trick-panel' data-trickindex='${t.i}'><div class='trick-tags-marker ${tagClasses}'></div>${title}</div>`;
+	const tagClasses = t.tags.map(s => `trick-tags-${s}`).join(' ');
+	const title = t.title;
+	return `<div class='trick-panel' data-trickindex='${t.index}'><div class='trick-tags-marker ${tagClasses}'></div>${title}</div>`;
 }
 
 function createVariantElement(v) {
@@ -222,8 +222,8 @@ function showEmbeddedVideo(v) {
 	}
 }
 
-function enrichTricks() {	
-	allTricks.forEach(t => {
+function enrichTricks() {
+	allTricks.forEach((t, i) => {
 		t.variants.forEach(v => {
 			v.isMp4 = v.url && v.url.endsWith(".mp4");
 			v.isStreamable = v.url && v.url.startsWith("https://streamable.com");
@@ -231,6 +231,7 @@ function enrichTricks() {
 		});
 		
 		t.tags = t.variants.flatMap(v => v.tags.split(',').map(s => s.trim()));
+		t.index = i;
 	});
 }
 
@@ -266,25 +267,24 @@ function showTricksAtClick(e) {
 	const x = game[0];
 	const y = game[1];
 
-	const tricksWithDistance = allTricks.map((t, i) => {
-		if (t.x === undefined || t.y === undefined) return { i, t };
+	const tricksWithDistance = allTricks.map(t => {
+		if (t.x === undefined || t.y === undefined) return { t };
 		const a = x - t.x;
 		const b = y - t.y;
 		const d = Math.sqrt(a*a + b*b);
-		return {d, i, t};
+		return {d, t};
 	}).sort((a, b) => { return a.d - b.d });
 
 	const r = [];
+	const u = [];
 	tricksWithDistance.forEach(t => {
-		if (t.d < trickSelectorMinRadius) r.push(t);
-		else if (t.d < trickSelectorMaxRadius && r.length < maxTricks) r.push(t);
+		if (t.d === undefined) u.push(t.t);
+		else if (t.d < trickSelectorMinRadius) r.push(t.t);
+		else if (t.d < trickSelectorMaxRadius && r.length < maxTricks) r.push(t.t);
 	});
 	
 	if (r.length) populateTrickList(r);
-	else {
-		const i = tricksWithDistance.filter(t => t.d === undefined);
-		populateTrickList(i);
-	}
+	else populateTrickList(u);
 }
 
 function updateCoordinates(e) {
