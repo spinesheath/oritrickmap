@@ -170,10 +170,12 @@ function createVariantElement(v) {
 	const desc = v.notes;
 	const icon = "<i class='material-symbols-outlined trick-details-icon'>movie</i>"
 	let a = "";
-	if (!url.endsWith(".mp4"))
-		a = `<a class='trick-details-anchor' href='${url}' target='_blank'>${icon}</a>`;
-	else
-		a = `<button class='trick-details-embed-button'>${icon}</button>`;
+	if (url) {
+		if (!url.endsWith(".mp4"))
+			a = `<a class='trick-details-anchor' href='${url}' target='_blank'>${icon}</a>`;
+		else
+			a = `<button class='trick-details-embed-button'>${icon}</button>`;
+	}
 	
 	return `<details><summary>${a}${req}</summary><p>${desc}</p></details>`;
 }
@@ -226,6 +228,7 @@ function showTricksAtClick(e) {
 	const y = game[1];
 
 	const tricksWithDistance = allTricks.map((t, i) => {
+		if (t.x === undefined || t.y === undefined) return { i, t };
 		const a = x - t.x;
 		const b = y - t.y;
 		const d = Math.sqrt(a*a + b*b);
@@ -237,7 +240,12 @@ function showTricksAtClick(e) {
 		if (t.d < trickSelectorMinRadius) r.push(t);
 		else if (t.d < trickSelectorMaxRadius && r.length < maxTricks) r.push(t);
 	});
-	populateTrickList(r);
+	
+	if (r.length) populateTrickList(r);
+	else {
+		const i = tricksWithDistance.filter(t => t.d === undefined);
+		populateTrickList(i);
+	}
 }
 
 function updateCoordinates(e) {
