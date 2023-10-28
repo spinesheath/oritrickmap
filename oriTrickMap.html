@@ -60,9 +60,13 @@ details p { margin-left: 20px; }
 }
 
 #embed-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; pointer-events: none; }
-video { pointer-events: all; background: var(--background-color); }
 .embedded-video-close { position: absolute; top: 5px; right: 5px; pointer-events: all; color: grey; cursor: pointer; font-size: 32px; }
 .embedded-video-close:hover { color: lightgrey; background: grey; }
+
+video { pointer-events: all; background: var(--background-color); }
+.streamable-wrapper { pointer-events: all; background: var(--background-color); height: 100%; position: relative; }
+.streamable-iframe { width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; overflow:hidden; }
+
 </style>
 
 <title>Ori trick map</title>
@@ -168,31 +172,54 @@ function createVariantElement(v) {
 	const url = v.url;
 	const req = v.requirements;
 	const desc = v.notes;
-	const icon = "<i class='material-symbols-outlined trick-details-icon'>movie</i>"
-	let a = "";
-	if (url) {
-		if (!url.endsWith(".mp4"))
-			a = `<a class='trick-details-anchor' href='${url}' target='_blank'>${icon}</a>`;
-		else
-			a = `<button class='trick-details-embed-button'>${icon}</button>`;
-	}
-	
-	return `<details><summary>${a}${req}</summary><p>${desc}</p></details>`;
+	const embedIcon = "<i class='material-symbols-outlined trick-details-icon'>movie</i>"
+	const externalIcon = "<i class='material-symbols-outlined trick-details-icon'>open_in_new</i>"
+	const embedButton = v.canEmbed ? `<a class='trick-details-anchor' href='${url}' target='_blank'>${externalIcon}</a>` : "";
+	const externalButton = url ? `<button class='trick-details-embed-button'>${embedIcon}</button>` : "";
+	return `<details><summary>${externalButton}${embedButton}${req}</summary><p>${desc}</p></details>`;
+}
+
+function clearEmbed() {
+	embedContainer.innerHTML = "";
+}
+
+function onKeyDownForEmbed(e) {
+	if (e.keyCode === 27) clearEmbed();
 }
 
 function showEmbeddedVideo(v) {
-	const width = embedContainer.clientWidth;
-	const height = embedContainer.clientHeight;
-	const sv = `<video width="${width}" height="${height}" class="embedded-video" controls autoplay loop muted><source src="${v.url}" type="video/mp4"></video>`;
 	const sb = "<i class='material-symbols-outlined embedded-video-close'>close</i>";
-	embedContainer.innerHTML = sv + sb;
-	const video = embedContainer.children[0];
-	video.addEventListener("keydown", (e) => {
-		if (e.keyCode === 27) embedContainer.innerHTML = "";
+	if (v.isMp4) {
+		const width = embedContainer.clientWidth;
+		const height = embedContainer.clientHeight;
+		const sv = `<video width="${width}" height="${height}" class="embedded-video" controls autoplay loop muted><source src="${v.url}" type="video/mp4"></video>`;
+		embedContainer.innerHTML = sv + sb;
+		const video = embedContainer.children[0];
+		video.addEventListener("keydown", onKeyDownForEmbed);
+		video.focus();
+		const closeIcon = embedContainer.children[1];
+		closeIcon.addEventListener("click", clearEmbed);
+	} else if (v.isStreamable) {
+		const id = v.url.slice(23);
+		const src = `https://streamable.com/e/${id}?autoplay=1`;
+		const html = `<div class="streamable-wrapper"><iframe class="streamable-iframe" src="${src}" frameborder="0" width="100%" height="100%" allowfullscreen></iframe></div>`;
+		embedContainer.innerHTML = html + sb;
+		const iframe = embedContainer.querySelector('.streamable-iframe');
+		iframe.addEventListener("keydown", onKeyDownForEmbed);
+		iframe.focus();
+		const closeIcon = embedContainer.children[1];
+		closeIcon.addEventListener("click", clearEmbed);
+	}
+}
+
+function enrichTricks() {	
+	allTricks.forEach(t => {
+		t.variants.forEach(v => {
+			v.isMp4 = v.url && v.url.endsWith(".mp4");
+			v.isStreamable = v.url && v.url.startsWith("https://streamable.com");
+			v.canEmbed = v.isMp4 || v.isStreamable;
+		});
 	});
-	video.focus();
-	const closeIcon = embedContainer.children[1];
-	closeIcon.addEventListener("click", () => { embedContainer.innerHTML = ""; });
 }
 
 function showTrickDetails(i) {
@@ -304,6 +331,7 @@ async function loadTricks() {
 	
 	try {
 		allTricks = JSON.parse(json);
+		enrichTricks();
 		if (img.complete) paintTrickDots();
 		else img.addEventListener('load', paintTrickDots);
 	}
