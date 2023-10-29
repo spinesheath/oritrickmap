@@ -30,4 +30,5 @@ Make sure you have the approval of the creator of the video if you didn't create
 - In game music or no music.
 - Game sounds can be heard.
 - Input display for difficult tricks.
+
 We might be able to jump into a longer video at a specific time stamp, haven't tried it yet. Not sure how convenient that would be.
