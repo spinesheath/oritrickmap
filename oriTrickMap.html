@@ -112,6 +112,7 @@ let allTricks = [];
 const maxTricks = 20;
 const trickSelectorMinRadius = 40;
 const trickSelectorMaxRadius = 100;
+const trickDefinitionsSource = "https://raw.githubusercontent.com/spinesheath/oritrickmap/main/trickDefinitions.json";
 
 const mapLeft = 371;
 const mapTop = 327;
@@ -381,7 +382,7 @@ async function loadTricks() {
 	}
 	
 	if (!local) {
-		const r = await fetch("https://oristorage.blob.core.windows.net/other/trickDefinitions.json");
+		const r = await fetch(trickDefinitionsSource);
 		json = await r.text();
 	}
 	
