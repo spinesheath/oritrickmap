@@ -1,5 +1,38 @@
 [
 	{
+		"title": "open energy doors",
+		"variants":
+		[
+			{
+				"tags": "general",
+				"url": "https://oristorage.blob.core.windows.net/videos/energyglitch.mp4",
+				"requirements": "1 less energy than required for door",
+				"notes": "Move away from door and insert an energy just as sein leaves the door. Refill your energy and put the remaining energy into the door."
+			}
+		]
+	},{
+		"title": "rocket jump (rjump)",
+		"variants":
+		[
+			{
+				"tags": "general",
+				"url": "https://oristorage.blob.core.windows.net/videos/rjump.mp4",
+				"requirements": "charge dash, 1 energy, an enemy",
+				"notes": "Position yourself under an enemy, then charge dash and press jump or glide to cancel it, ideally on the same frame. Can be mapped to a single input. Depending on your position relative to the enemy, velocity and direction will be different."
+			}
+		]
+	},{
+		"title": "break blue walls",
+		"variants":
+		[
+			{
+				"tags": "general",
+				"url": "https://oristorage.blob.core.windows.net/videos/rightstomp.mp4",
+				"requirements": "stomp, verticality in some cases",
+				"notes": "Jump up on the side of a blue wall and stomp while touching the wall to break it."
+			}
+		]
+	},{
 		"title": "double jump wall interaction",
 		"variants":
 		[
@@ -72,6 +105,19 @@
 			}
 		]
 	},{
+		"title": "horu fields health cell",
+		"x": 160,
+		"y": -70,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://oristorage.blob.core.windows.net/videos/horufieldshc_nothing.mp4",
+				"requirements": "no requirements",
+				"notes": "Hug the wall, turn around while crouching, then start running right and jump soon after. Then aggro the baneling and jump over it to make it break the floor."
+			}
+		]
+	},{
 		"title": "destroyed horu fields climb",
 		"x": 30,
 		"y": 10,
@@ -98,12 +144,17 @@
 			}
 		]
 	},{
-		"title": "cross horu fields in reverse",
+		"title": "break horu fields wall",
 		"x": 160,
 		"y": -20,
 		"variants":
 		[
 			{
+				"tags": "connection",
+				"url": "https://oristorage.blob.core.windows.net/videos/momentumstorage.mp4",
+				"requirements": "sein",
+				"notes": "Attack baneling about 20 times before aggroing it. It will launch itself into the wall and break it."
+			},{
 				"tags": "connection",
 				"url": "https://streamable.com/zqke53",
 				"requirements": "5+ cdash",
@@ -531,7 +582,20 @@
 			}
 		]
 	},{
-		"title": "reverse fronkey walk",
+		"title": "keep lever permanently pulled",
+		"x": 290,
+		"y": -300,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://oristorage.blob.core.windows.net/videos/leverglitch.mp4",
+				"requirements": "1 soul link, rekindle",
+				"notes": "Save at the lever, then rekindle the save while pulling the lever. Then die or reload the save file. The lever will remain permanently pulled and the door will stay open."
+			}
+		]
+	},{
+		"title": "break floor to lower blackroot",
 		"x": 270,
 		"y": -310,
 		"variants":
@@ -539,7 +603,7 @@
 			{
 				"tags": "connection",
 				"url": "https://streamable.com/6g6u1m",
-				"requirements": "verticality",
+				"requirements": "verticality, fronkey alive",
 				"notes": "get fronkey over spikes, then cross cushers, fronkey will follow just fine on its own. Then just barely enter aggro range and leave it immediately to force shorthops by fronkey"
 			}
 		]
