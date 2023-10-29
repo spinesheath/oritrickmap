@@ -161,7 +161,8 @@ function paintTrickDots() {
 	ctx.fillStyle = 'white';
 	ctx.beginPath();
 
-	allTricks.forEach(t => {
+	const tricks = getFilteredTricks();
+	tricks.forEach(t => {
 		const mapCoordinates = gameToImgCoordinates(t.x, t.y);
 		const x = mapCoordinates[0];
 		const y = mapCoordinates[1];
@@ -267,7 +268,8 @@ function showTricksAtClick(e) {
 	const x = game[0];
 	const y = game[1];
 
-	const tricksWithDistance = allTricks.map(t => {
+	const tricks = getFilteredTricks();
+	const tricksWithDistance = tricks.map(t => {
 		if (t.x === undefined || t.y === undefined) return { t };
 		const a = x - t.x;
 		const b = y - t.y;
@@ -323,22 +325,37 @@ function onMouseMove(e) {
 }
 
 function distinct(a) {
-  return [...new Set(a)];
+	return [...new Set(a)];
 }
 
-function updateFilterSummary() {
+function hasIntersection(a, b) {
+	for (x of a) {
+		if (b.includes(x)) return true;
+	}
+	return false;
+}
+
+function getSelectedTags() {
 	let selected = [];
 	for (var i = 0; i < filterList.children.length; i++) {
 		const c = filterList.children[i];
-		if (c.checked) {
-			selected.push(c.dataset.tag);
-		}
+		if (c.checked) selected.push(c.dataset.tag);
 	}
-	if (selected.length) {
-		filterSummary.innerHTML = selected.join(", ");
-	} else {
-		filterSummary.innerHTML = "no filters selected";
-	}
+	return selected;
+}
+
+function getFilteredTricks() {
+	const selected = getSelectedTags();
+	if (selected.length) return allTricks.filter(t => hasIntersection(t.tags, selected));
+	return allTricks;
+}
+
+function onFiltersChanged() {
+	const selected = getSelectedTags();
+	if (selected.length) filterSummary.innerHTML = selected.join(", ");
+	else filterSummary.innerHTML = "no filters selected";
+	
+	paintTrickDots();
 }
 
 function loadFilters() {
@@ -346,9 +363,9 @@ function loadFilters() {
 	const checkboxes = allTags.map(t => `<input type="checkbox" data-tag="${t}">${t}</input>`).join('');
 	filterList.innerHTML = checkboxes;
 	for (var i = 0; i < filterList.children.length; i++) {
-		filterList.children[i].addEventListener("click", updateFilterSummary);
+		filterList.children[i].addEventListener("click", onFiltersChanged);
 	}
-	updateFilterSummary();
+	onFiltersChanged();
 }
 
 async function loadTricks() {
