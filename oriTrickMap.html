@@ -111,7 +111,7 @@ let allTricks = [];
 
 const maxTricks = 20;
 const trickSelectorMinRadius = 40;
-const trickSelectorMaxRadius = 200;
+const trickSelectorMaxRadius = 100;
 
 const mapLeft = 371;
 const mapTop = 327;
@@ -257,9 +257,8 @@ function populateTrickList(tricks) {
 	const content = tricks.map(createTrickPanel).join('');
 	trickList.innerHTML = content;
 
-	for (let i = 0; i < trickList.children.length; i++) {
-		const c = trickList.children[i];
-		c.addEventListener("click", function() { showTrickDetails(c.dataset.trickindex); });
+	for (c of trickList.children) {
+		c.addEventListener("click", e => showTrickDetails(e.currentTarget.dataset.trickindex));
 	}
 }
 
@@ -337,8 +336,7 @@ function hasIntersection(a, b) {
 
 function getSelectedTags() {
 	let selected = [];
-	for (var i = 0; i < filterList.children.length; i++) {
-		const c = filterList.children[i];
+	for (c of filterList.children) {
 		if (c.checked) selected.push(c.dataset.tag);
 	}
 	return selected;
@@ -362,8 +360,8 @@ function loadFilters() {
 	const allTags = distinct(allTricks.flatMap(t => t.tags)).sort();
 	const checkboxes = allTags.map(t => `<input type="checkbox" data-tag="${t}">${t}</input>`).join('');
 	filterList.innerHTML = checkboxes;
-	for (var i = 0; i < filterList.children.length; i++) {
-		filterList.children[i].addEventListener("click", onFiltersChanged);
+	for (c of filterList.children) {
+		c.addEventListener("click", onFiltersChanged);
 	}
 	onFiltersChanged();
 }
