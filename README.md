@@ -31,4 +31,4 @@ Make sure you have the approval of the creator of the video if you didn't create
 - Game sounds can be heard.
 - Input display for difficult tricks.
 
-We might be able to jump into a longer video at a specific time stamp, haven't tried it yet. Not sure how convenient that would be.
+Streamable works. You can also use youtube (optionally with a start time). Other video hosts probably work as well. Plain mp4 files work as long as the server that hosts them has has CORS settings that allow it.
