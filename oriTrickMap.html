@@ -231,7 +231,7 @@ function enrichTricks() {
 			v.canEmbed = v.isMp4 || v.isStreamable;
 		});
 		
-		t.tags = t.variants.flatMap(v => v.tags.split(',').map(s => s.trim()));
+		t.tags = distinct(t.variants.flatMap(v => v.tags.split(',').map(s => s.trim())));
 		t.index = i;
 	});
 }
