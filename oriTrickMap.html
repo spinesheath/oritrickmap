@@ -186,9 +186,9 @@ function createVariantElement(v) {
 	const desc = v.notes;
 	const embedIcon = "<i class='material-symbols-outlined trick-details-icon'>movie</i>"
 	const externalIcon = "<i class='material-symbols-outlined trick-details-icon'>open_in_new</i>"
-	const embedButton = v.canEmbed ? `<a class='trick-details-anchor' href='${url}' target='_blank'>${externalIcon}</a>` : "";
-	const externalButton = url ? `<button class='trick-details-embed-button'>${embedIcon}</button>` : "";
-	return `<details><summary>${externalButton}${embedButton}${req}</summary><p>${desc}</p></details>`;
+	const externalButton = url ? `<a class='trick-details-anchor' href='${url}' target='_blank'>${externalIcon}</a>` : "";
+	const embedButton = v.canEmbed ?`<button class='trick-details-embed-button'>${embedIcon}</button>` : "";
+	return `<details><summary>${embedButton}${externalButton}${req}</summary><p>${desc}</p></details>`;
 }
 
 function clearEmbed() {
@@ -227,9 +227,11 @@ function showEmbeddedVideo(v) {
 function enrichTricks() {
 	allTricks.forEach((t, i) => {
 		t.variants.forEach(v => {
-			v.isMp4 = v.url && v.url.endsWith(".mp4");
-			v.isStreamable = v.url && v.url.startsWith("https://streamable.com");
-			v.canEmbed = v.isMp4 || v.isStreamable;
+			if (v.url) {
+				v.isMp4 = v.url.endsWith(".mp4");
+				v.isStreamable = v.url.startsWith("https://streamable.com");
+				v.canEmbed = v.isMp4 || v.isStreamable;
+			}
 		});
 		
 		t.tags = distinct(t.variants.flatMap(v => v.tags.split(',').map(s => s.trim())));
