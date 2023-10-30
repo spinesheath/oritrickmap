@@ -82,10 +82,20 @@
 				"requirements": "wall jump, double jump, grenade",
 				"notes": "Climb the left side of the right tree with wall jump and double jump."
 			},{
+				"tags": "pickup",
+				"url": "https://oristorage.blob.core.windows.net/videos/gladesgrenadetree_dj_gl_ad_g_wind.mp4",
+				"requirements": "double jump, glide, airdash, grenade, wind",
+				"notes": "Catch the wind in the middle of the spikes to the right, ride it all the way up and then glide over to the tree. Conserve height with airdash and double jump."
+			},{
 				"tags": "pickup, precise",
 				"url": "https://oristorage.blob.core.windows.net/videos/gladesgrenadetree_g.mp4",
 				"requirements": "grenade",
 				"notes": "Stand on the left swing and throw a grenade onto the left end of the swing. Pause on the frame when the grenade hits the swing. Wait for a few seconds, unpause. Can cause you to go through walls if you pause too long."
+			},{
+				"tags": "pickup, precise",
+				"url": "https://oristorage.blob.core.windows.net/videos/gladesgrenadetree_dj_ad_g.mp4",
+				"requirements": "double jump, airdash, grenade",
+				"notes": "Get the right swing swinging by running left and right. Then dash ramp and double jump to the left wall."
 			}
 		]
 	},{
