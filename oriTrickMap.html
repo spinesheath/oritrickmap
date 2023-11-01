@@ -45,6 +45,7 @@ body { position: relative; }
 .trick-tags-connection { background: var(--trick-color-connection); }
 .trick-tags-pickup { background: var(--trick-color-pickup); }
 
+#trick-details { max-height: 50vh; overflow-y: auto; overflow-x: hidden; }
 #trick-details-variants { width: 100%; overflow-y: auto; overflow-x: hidden; }
 summary {
 	cursor: pointer;
@@ -55,13 +56,18 @@ summary {
 }
 details p { margin-left: 20px; }
 .trick-details-anchor { display: inline-block; height: var(--list-item-height); margin-right: 5px; }
-.trick-details-embed-button { display: inline-block; height: var(--list-item-height); margin-right: 5px; background: none; border: none; padding: 0; }
+.trick-details-embed-button,
+.trick-details-image-button {
+	display: inline-block; height: var(--list-item-height); margin-right: 5px; background: none; border: none; padding: 0;
+}
 
 .trick-details-icon {
 	vertical-align: sub;
 	color: var(--href-color);
 	&:hover { color: var(--href-hover-color); }
 }
+
+.variant-tags { color: grey; }
 
 #embed-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; pointer-events: none; }
 .embedded-video-close { position: absolute; top: 5px; right: 5px; pointer-events: all; color: grey; cursor: pointer; font-size: 32px; }
@@ -70,6 +76,8 @@ details p { margin-left: 20px; }
 video { pointer-events: all; background: var(--background-color); }
 .streamable-wrapper { pointer-events: all; background: var(--background-color); height: 100%; position: relative; }
 .streamable-iframe { width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; overflow:hidden; }
+
+.embedded-image-wrapper { width: 100%; height: 100%; background: var(--background-color); display: flex; align-items: center; justify-content: center; pointer-events: all; }
 
 </style>
 
@@ -184,11 +192,14 @@ function createVariantElement(v) {
 	const url = v.url;
 	const req = v.requirements;
 	const desc = v.notes;
+	const tags = v.tags;
 	const embedIcon = "<i class='material-symbols-outlined trick-details-icon'>movie</i>"
+	const imageIcon = "<i class='material-symbols-outlined trick-details-icon'>image</i>"
 	const externalIcon = "<i class='material-symbols-outlined trick-details-icon'>open_in_new</i>"
-	const externalButton = url ? `<a class='trick-details-anchor' href='${url}' target='_blank'>${externalIcon}</a>` : "";
 	const embedButton = v.canEmbed ?`<button class='trick-details-embed-button'>${embedIcon}</button>` : "";
-	return `<details><summary>${embedButton}${externalButton}${req}</summary><p>${desc}</p></details>`;
+	const imageButton = v.isImage ?`<button class='trick-details-image-button'>${imageIcon}</button>` : "";
+	const externalButton = url ? `<a class='trick-details-anchor' href='${url}' target='_blank'>${externalIcon}</a>` : "";
+	return `<details><summary>${embedButton}${imageButton}${externalButton}${req}</summary><p>${desc}</p><p class="variant-tags">${tags}</p></details>`;
 }
 
 function clearEmbed() {
@@ -199,7 +210,7 @@ function onKeyDownForEmbed(e) {
 	if (e.keyCode === 27) clearEmbed();
 }
 
-function showEmbeddedVideo(v) {
+function showEmbed(v) {
 	const sb = "<i class='material-symbols-outlined embedded-video-close'>close</i>";
 	if (v.isMp4) {
 		const width = embedContainer.clientWidth;
@@ -224,6 +235,17 @@ function showEmbeddedVideo(v) {
 	}
 }
 
+function showImage(v) {
+	const sb = "<i class='material-symbols-outlined embedded-video-close'>close</i>";
+	const html = `<div class="embedded-image-wrapper" tabindex="0"><img class="embedded-image" src=${v.url}></img></div>`;
+	embedContainer.innerHTML = html + sb;
+	const i = embedContainer.children[0];
+	i.addEventListener("keydown", onKeyDownForEmbed);
+	i.focus();
+	const closeIcon = embedContainer.children[1];
+	closeIcon.addEventListener("click", clearEmbed);
+}
+
 function enrichTricks() {
 	allTricks.forEach((t, i) => {
 		t.variants.forEach(v => {
@@ -231,6 +253,7 @@ function enrichTricks() {
 				v.isMp4 = v.url.endsWith(".mp4");
 				v.isStreamable = v.url.startsWith("https://streamable.com");
 				v.canEmbed = v.isMp4 || v.isStreamable;
+				v.isImage = !!v.url.match(/\.(jpg|jpeg|png|gif)$/i);
 			}
 		});
 		
@@ -248,11 +271,11 @@ function showTrickDetails(i) {
 	
 	for (let i = 0; i < trick.variants.length; i++) {
 		const variantElement = trickDetailsVariants.children[i];
+		const variant = trick.variants[i];
 		const embedButton = variantElement.querySelector(".trick-details-embed-button");
-		if (embedButton) {
-			const variant = trick.variants[i];
-			embedButton.addEventListener("click", () => showEmbeddedVideo(variant));
-		}
+		if (embedButton) embedButton.addEventListener("click", () => showEmbed(variant));
+		const imageButton = variantElement.querySelector(".trick-details-image-button");
+		if (imageButton) imageButton.addEventListener("click", () => showImage(variant));
 	}
 }
 

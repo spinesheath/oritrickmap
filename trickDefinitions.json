@@ -689,5 +689,18 @@
 				"notes": "ramp into dash glide, climb the wall, then updash or airdash"
 			}
 		]
+	},{
+		"title": "microledge below gandalf",
+		"x": 470,
+		"y": -160,
+		"variants":
+		[
+			{
+				"tags": "microledge, useless",
+				"url": "https://oristorage.blob.core.windows.net/images/belowgandalfledge.png",
+				"requirements": "wall interaction",
+				"notes": "no known applications"
+			}
+		]
 	}
 ]
