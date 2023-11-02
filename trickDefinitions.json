@@ -66,6 +66,32 @@
 			}
 		]
 	},{
+		"title": "glades main pool experience",
+		"x": 10,
+		"y": -240,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://oristorage.blob.core.windows.net/videos/gladesmainpool_1cd_1d.mp4",
+				"requirements": "1 charge dash, 1 damage, warp out",
+				"notes": "Wait for the fish to be in a good position, then meteor kick to dive down quickly. Warp out after collecting the pickup."
+			}
+		]
+	},{
+		"title": "glades main pool energy cell",
+		"x": -40,
+		"y": -240,
+		"variants":
+		[
+			{
+				"tags": "pickup, precise",
+				"url": "https://oristorage.blob.core.windows.net/videos/gladesmainpooldeep_1cd_5d.mp4",
+				"requirements": "1 charge dash, 4 damage, warp out",
+				"notes": "Wait for the fish to be in a good position, then meteor kick to dive down quickly."
+			}
+		]
+	},{
 		"title": "glades grenade tree ability cell",
 		"x": 80,
 		"y": -200,
@@ -92,10 +118,51 @@
 				"requirements": "grenade",
 				"notes": "Stand on the left swing and throw a grenade onto the left end of the swing. Pause on the frame when the grenade hits the swing. Wait for a few seconds, unpause. Can cause you to go through walls if you pause too long."
 			},{
+				"tags": "pickup, slow",
+				"url": "https://oristorage.blob.core.windows.net/videos/gladesgrenadetree_tj_g.mp4",
+				"requirements": "triple jump, grenade",
+				"notes": "Get the right swing swinging by running left and right. Then triple jump to the left wall."
+			},{
 				"tags": "pickup, precise",
+				"url": "https://oristorage.blob.core.windows.net/videos/gladesgrenadetree_tj_g_2.mp4",
+				"requirements": "triple jump, grenade",
+				"notes": "Triple jump to the right side of the tree, refresh triple jump on the small overhang."
+			},{
+				"tags": "pickup, precise, slow",
 				"url": "https://oristorage.blob.core.windows.net/videos/gladesgrenadetree_dj_ad_g.mp4",
 				"requirements": "double jump, airdash, grenade",
 				"notes": "Get the right swing swinging by running left and right. Then dash ramp and double jump to the left wall."
+			}
+		]
+	},{
+		"title": "fronkey walk roof",
+		"x": 250,
+		"y": -190,
+		"variants":
+		[
+			{
+				"tags": "pickup, lure",
+				"url": "https://oristorage.blob.core.windows.net/videos/fronkeywalkroof_gl_1cd.mp4",
+				"requirements": "sein, 1 charge dash, glide",
+				"notes": "Lure fronkey with sein, rocket jump and glide to the pickup."
+			},{
+				"tags": "pickup, lure",
+				"url": "https://oristorage.blob.core.windows.net/videos/fronkeywalkroof_1cd_1d.mp4",
+				"requirements": "sein, 1 charge dash, 1 damage",
+				"notes": "Lure fronkey with sein, damage boost over spikes and rocket jump to the pickup."
+			}
+		]
+	},{
+		"title": "death gauntlet energy cell",
+		"x": 420,
+		"y": -160,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://oristorage.blob.core.windows.net/videos/deathgauntletenergycell_dj.mp4",
+				"requirements": "double jump",
+				"notes": "Drop the first crusher, ride it up and jump from as close to the top as possible. Then ride the second crusher up to the energy cell."
 			}
 		]
 	},{
