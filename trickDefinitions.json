@@ -166,6 +166,63 @@
 			}
 		]
 	},{
+		"title": "walljump area energy cell",
+		"x": -340,
+		"y": -290,
+		"variants":
+		[
+			{
+				"tags": "pickup, precise",
+				"url": "https://oristorage.blob.core.windows.net/videos/walljumpareaenergycell_b.mp4",
+				"requirements": "bash",
+				"notes": "Bash fronkey under the first and second mushroom platform, then lure it to the bottom and get out of its aggro range to force a shorthop. Bash it over the spikes and pass below it. Lure it all the way to the left and make sure it dodges the spikes. Then bash to the energy cell."
+			}
+		]
+	},{
+		"title": "walljump area experience",
+		"x": -260,
+		"y": -280,
+		"variants":
+		[
+			{
+				"tags": "pickup, precise",
+				"url": "https://oristorage.blob.core.windows.net/videos/walljumpareaenergycell_b.mp4",
+				"requirements": "bash",
+				"notes": "Bash fronkey under the first and second mushroom platform, then lure it to the bottom and get out of its aggro range to force a shorthop. Bash it over the spikes and pass below it. Lure it to the left and make sure it dodges the spikes. Then bash to the experience."
+			}
+		]
+	},{
+		"title": "spirit caverns ability cell",
+		"x": -220,
+		"y": -180,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://oristorage.blob.core.windows.net/videos/spiritcavernsabilitycell_wj_dj.mp4",
+				"requirements": "walljump, doublejump",
+				"notes": "Jump to a small wall on the right of the ability cell, then walljump and doublejump from there."
+			},{
+				"tags": "pickup",
+				"url": "https://streamable.com/yh07rs",
+				"requirements": "bash",
+				"notes": "bash down to send projectile up, then bash again without jumping"
+			}
+		]
+	},{
+		"title": "razielNo microledge",
+		"x": 290,
+		"y": -310,
+		"variants":
+		[
+			{
+				"tags": "microledge",
+				"url": "https://oristorage.blob.core.windows.net/videos/razielnomicroledge.mp4",
+				"requirements": "no requirements",
+				"notes": "Stand a little away from the wall, crouch and backflip. Move to the right while jumping and you should land directly on the microledge after a few attempts."
+			}
+		]
+	},{
 		"title": "misty keydupe",
 		"x": -900,
 		"y": -20,
@@ -212,19 +269,6 @@
 				"url": "https://streamable.com/dy83kw",
 				"requirements": "djump, grenade",
 				"notes": "throw grenade, then jump to right to load the plant"
-			}
-		]
-	},{
-		"title": "caverns AC",
-		"x": -220,
-		"y": -180,
-		"variants":
-		[
-			{
-				"tags": "pickup",
-				"url": "https://streamable.com/yh07rs",
-				"requirements": "bash",
-				"notes": "bash down to send projectile up, then bash again without jumping"
 			}
 		]
 	},{
