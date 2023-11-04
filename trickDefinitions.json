@@ -285,29 +285,65 @@
 			}
 		]
 	},{
-		"title": "destroyed horu fields climb",
-		"x": 30,
-		"y": 10,
-		"variants":
-		[
-			{
-				"tags": "connection",
-				"url": "https://streamable.com/pd87us",
-				"requirements": "wjump, djump, stomp",
-				"notes": "lure fronkey to the left, then use right wall to gain height, then stomp bounce and stomp stall to gain more height"
-			}
-		]
-	},{
 		"title": "cross horu fields",
 		"x": 110,
 		"y": -10,
 		"variants":
 		[
 			{
+				"tags": "connection, precise",
+				"url": "https://oristorage.blob.core.windows.net/videos/horufields_b.mp4",
+				"requirements": "bash",
+				"notes": "Bash one projectile to the left, bash to it and use that to aggro the left elemental, bash off right elemental projectile again, then off left elemental projectile."
+			},{
 				"tags": "connection",
 				"url": "https://streamable.com/jzagdz",
 				"requirements": "6+ cdash",
 				"notes": "carry baneling to the left with cdashes, rjump and then cdash after baneling dies"
+			}
+		]
+	},{
+		"title": "horu fields push block",
+		"x": 70,
+		"y": 10,
+		"variants":
+		[
+			{
+				"tags": "connection, precise",
+				"url": "https://oristorage.blob.core.windows.net/videos/horufieldspushblock_b.mp4",
+				"requirements": "bash",
+				"notes": "Use projectiles from bottom elemental to aggro the top elemental, then bash up."
+			},	{
+				"tags": "connection, precise",
+				"url": "https://streamable.com/pd87us",
+				"requirements": "wjump, djump, stomp",
+				"notes": "lure fronkey to the left, then use right wall to gain height, then stomp bounce and stomp stall to gain more height"
+			}
+		]
+	},{
+		"title": "horu fields energy cell",
+		"x": 170,
+		"y": 0,
+		"variants":
+		[
+			{
+				"tags": "pickup, precise",
+				"url": "https://oristorage.blob.core.windows.net/videos/horufieldsenergycell_b.mp4",
+				"requirements": "bash",
+				"notes": "Use projectiles from bottom elemental to aggro the top elemental, then bash up and right."
+			}
+		]
+	},{
+		"title": "horu door",
+		"x": -80,
+		"y": 0,
+		"variants":
+		[
+			{
+				"tags": "connection, precise",
+				"url": "https://oristorage.blob.core.windows.net/videos/horudoor_b.mp4",
+				"requirements": "bash, horu fields intact",
+				"notes": "Lure fronkey to the left pillar, bash it over the lava, then bash off fronkey."
 			}
 		]
 	},{
