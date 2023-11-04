@@ -223,6 +223,55 @@
 			}
 		]
 	},{
+		"title": "cross valley to misty",
+		"x": -550,
+		"y": -30,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://oristorage.blob.core.windows.net/videos/crossvalley_dj_b.mp4",
+				"requirements": "double jump, bash",
+				"notes": "Bring the frog over to the ledge then either bash the frog to the left or bait a projectile to the left, jump after them and bash to the top left. Bash glide and double jump to misty."
+			}
+		]
+	},{
+		"title": "misty first pickup",
+		"x": -680,
+		"y": -30,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://streamable.com/raqa5r",
+				"requirements": "1 rjump, 1 cdash, combat",
+				"notes": "push frog, rjump to get a high shot, redirect it with cdash"
+			},{
+				"tags": "pickup",
+				"url": "https://oristorage.blob.core.windows.net/videos/mistyfirstpickup_cl_cj_d.mp4",
+				"requirements": "climb, charge jump, dash",
+				"notes": "Wall charge jump from the wall above the pickup, aim bottom left. Dash to the right immediately after charge jumping."
+			},{
+				"tags": "pickup",
+				"url": "https://oristorage.blob.core.windows.net/videos/mistyfirstpickup_1cd.mp4",
+				"requirements": "charge dash, combat",
+				"notes": "Clear enemies to the left, push frog to the left, bait a projectile far to the left, cdash redirect the projectile."
+			}
+		]
+	},{
+		"title": "misty second pickup",
+		"x": -820,
+		"y": -20,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://oristorage.blob.core.windows.net/videos/mistysecondpickup_wj.mp4",
+				"requirements": "wall jump",
+				"notes": "Climb the left wall, jump over to the hanging log. Jump towards the right end of the branch and wall jump off the tip of the branch."
+			}
+		]
+	},{
 		"title": "misty keydupe",
 		"x": -900,
 		"y": -20,
@@ -686,19 +735,6 @@
 				"url": "https://streamable.com/yynxzi",
 				"requirements": "bash, grenade",
 				"notes": "stay calm and bash things"
-			}
-		]
-	},{
-		"title": "misty first pickup",
-		"x": -680,
-		"y": -30,
-		"variants":
-		[
-			{
-				"tags": "pickup",
-				"url": "https://streamable.com/raqa5r",
-				"requirements": "1 rjump, 1 cdash, combat",
-				"notes": "push frog, rjump to get a high shot, redirect it with cdash"
 			}
 		]
 	},{
