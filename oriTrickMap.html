@@ -447,6 +447,9 @@ function initFromQueryParams() {
 	const x = getNumber(p, /x=([-\d]+)/);
 	const y = getNumber(p, /y=([-\d]+)/);
 	if (!!x && !!y) showTricksAtCoordinates(x, y);
+	
+	const c = trickList.children[0];
+	if (c) showTrickDetails(c.dataset.trickindex);
 }
 
 zoomContainer.onmousedown = (e) => {
