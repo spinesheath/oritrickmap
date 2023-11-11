@@ -192,6 +192,19 @@
 			}
 		]
 	},{
+		"title": "spirit caverns second keystone",
+		"x": -220,
+		"y": -180,
+		"variants":
+		[
+			{
+				"tags": "pickup, precise, microledge",
+				"url": "https://oristorage.blob.core.windows.net/videos/cavernsmicroledge_nothing.mp4",
+				"requirements": "no requirements",
+				"notes": "Jump to the microledge just below the keystone, then immediately jump from there."
+			}
+		]
+	},{
 		"title": "spirit caverns ability cell",
 		"x": -220,
 		"y": -180,
@@ -207,6 +220,76 @@
 				"url": "https://streamable.com/yh07rs",
 				"requirements": "bash",
 				"notes": "bash down to send projectile up, then bash again without jumping"
+			}
+		]
+	},{
+		"title": "spirit caverns ledge near energy door",
+		"x": -200,
+		"y": -170,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://oristorage.blob.core.windows.net/videos/uppercavernsledge_nothing.mp4",
+				"requirements": "no requirements",
+				"notes": "Walk to the ledge, hold down and left, then jump."
+			}
+		]
+	},{
+		"title": "spirit caverns friendly spikes",
+		"x": -190,
+		"y": -140,
+		"variants":
+		[
+			{
+				"tags": "microledge, precise",
+				"url": "https://oristorage.blob.core.windows.net/images/friendly_uppercaverns.jpg",
+				"requirements": "no requirements",
+				"notes": "A tiny patch of friendly spikes."
+			}
+		]
+	},{
+		"title": "spirit caverns upper door",
+		"x": -180,
+		"y": -130,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://oristorage.blob.core.windows.net/videos/cavernsupperdoord_cj_1d.mp4",
+				"requirements": "charge jump, 1 damage",
+				"notes": "Jump onto the spikes while charging, then charge jump all the way to the door."
+			},{
+				"tags": "connection, precise, friendly",
+				"url": "https://oristorage.blob.core.windows.net/videos/cavernsupperdoord_cj.mp4",
+				"requirements": "charge jump",
+				"notes": "Charge jump to the friendly spikes on the left, then charge jump to the door."
+			}
+		]
+	},{
+		"title": "left of grove teleporter hidden experience",
+		"x": -170,
+		"y": -100,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://oristorage.blob.core.windows.net/videos/leftofgrovetp_dj_st.mp4",
+				"requirements": "spirit flame, double jump, stomp",
+				"notes": "Lure the bird from the left, aggro it with spirit flame once it's at the tree. Stomp on top of the bird to bounce and get your double jump back."
+			}
+		]
+	},{
+		"title": "valley entry plant",
+		"x": -180,
+		"y": -80,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://oristorage.blob.core.windows.net/videos/valleyentryplant_wj_cf.mp4",
+				"requirements": "wall jump, charge flame",
+				"notes": "Jump to the tree and climb it with wall jumps, then break the plant with charge flame from below."
 			}
 		]
 	},{
@@ -269,6 +352,19 @@
 				"url": "https://oristorage.blob.core.windows.net/videos/mistysecondpickup_wj.mp4",
 				"requirements": "wall jump",
 				"notes": "Climb the left wall, jump over to the hanging log. Jump towards the right end of the branch and wall jump off the tip of the branch."
+			}
+		]
+	},{
+		"title": "misty above spike pit",
+		"x": -780,
+		"y": -80,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://oristorage.blob.core.windows.net/videos/mistyabovespikepit_1rj.mp4",
+				"requirements": "rocket jump",
+				"notes": "Lure out the sitshootshark, dash to the right and quickly rocket jump before the sitshootshark retreats again."
 			}
 		]
 	},{
