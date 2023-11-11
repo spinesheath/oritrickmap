@@ -148,7 +148,7 @@ function imgToGameCoordinates(imgX, imgY) {
 	const y = unzoomedY * img.naturalHeight / img.height;
 	const gameX = (x - mapLeft) / scaleX + gameLeft;
 	const gameY = (y - mapTop) / scaleY + gameTop;
-	return [gameX, gameY];
+	return { x: gameX, y: gameY };
 }
 
 function gameToImgCoordinates(gameX, gameY) {
@@ -288,11 +288,7 @@ function populateTrickList(tricks) {
 	}
 }
 
-function showTricksAtClick(e) {
-	const game = imgToGameCoordinates(e.pageX - img.offsetLeft, e.pageY - img.offsetTop);
-	const x = game[0];
-	const y = game[1];
-
+function showTricksAtCoordinates(x, y) {
 	const tricks = getFilteredTricks();
 	const tricksWithDistance = tricks.map(t => {
 		if (t.x === undefined || t.y === undefined) return { t };
@@ -314,9 +310,23 @@ function showTricksAtClick(e) {
 	else populateTrickList(u);
 }
 
+function pushCoordinatesToHistory(x, y) {
+	var a = window.location.origin + window.location.pathname;
+	var b = `${a}?x=${x}&y=${y}`;
+	window.history.pushState({ x, y }, "", b);
+}
+
+function showTricksAtClick(e) {
+	const game = imgToGameCoordinates(e.pageX - img.offsetLeft, e.pageY - img.offsetTop);
+	const x = Math.round(game.x);
+	const y = Math.round(game.y);
+	pushCoordinatesToHistory(x, y);
+	showTricksAtCoordinates(x, y);
+}
+
 function updateCoordinates(e) {
 	const game = imgToGameCoordinates(e.pageX - img.offsetLeft, e.pageY - img.offsetTop);
-	const text = "[" + Math.round(game[0]) + ", " + Math.round(game[1]) + "]";
+	const text = "[" + Math.round(game.x) + ", " + Math.round(game.y) + "]";
 	document.getElementById("coordinate-span").innerHTML = text;
 };
 
@@ -328,15 +338,17 @@ function updateTransform() {
 }
 
 function onMouseUp(e) {
-	zoom.panning = false;
-	const dx = zoom.x - zoom.px;
-	const dy = zoom.y - zoom.py;
-	if (dx*dx + dy*dy > 500) return;
-	zoom.x = zoom.px;
-	zoom.y = zoom.py;
-	updateTransform();
-	
-	showTricksAtClick(e);
+	if (e.which === 1) {
+		zoom.panning = false;
+		const dx = zoom.x - zoom.px;
+		const dy = zoom.y - zoom.py;
+		if (dx*dx + dy*dy > 500) return;
+		zoom.x = zoom.px;
+		zoom.y = zoom.py;
+		updateTransform();
+		
+		showTricksAtClick(e);
+	}
 }
 
 function onMouseMove(e) {
@@ -417,19 +429,35 @@ async function loadTricks() {
 		loadFilters();
 		if (img.complete) paintTrickDots();
 		else img.addEventListener('load', paintTrickDots);
+		initFromQueryParams();
 	}
 	catch (e) {
 		console.error(e);
 	}
 }
 
+function getNumber(s, r) {
+	const m = s.match(r);
+	if (m) return m[1];
+	return undefined;
+}
+
+function initFromQueryParams() {
+	const p = window.location.search;
+	const x = getNumber(p, /x=([-\d]+)/);
+	const y = getNumber(p, /y=([-\d]+)/);
+	if (!!x && !!y) showTricksAtCoordinates(x, y);
+}
+
 zoomContainer.onmousedown = (e) => {
-	e.preventDefault();
-	zoom.px = zoom.x;
-	zoom.py = zoom.y;
-	zoom.x0 = e.clientX - zoom.x;
-	zoom.y0 = e.clientY - zoom.y;
-	zoom.panning = true;
+	if (e.which === 1) {
+		e.preventDefault();
+		zoom.px = zoom.x;
+		zoom.py = zoom.y;
+		zoom.x0 = e.clientX - zoom.x;
+		zoom.y0 = e.clientY - zoom.y;
+		zoom.panning = true;
+	}
 }
 
 zoomContainer.onmouseleave = (e) => zoom.panning = false;
@@ -447,6 +475,9 @@ zoomContainer.onwheel = (e) => {
 }
 
 window.addEventListener("resize", paintTrickDots);
+window.addEventListener("popstate", e => {
+	showTricksAtCoordinates(e.state.x, e.state.y);
+});
 
 img.addEventListener("mousemove", onMouseMove);
 img.addEventListener("mouseup", onMouseUp);
