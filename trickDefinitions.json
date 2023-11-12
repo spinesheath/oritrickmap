@@ -821,7 +821,20 @@
 			}
 		]
 	},{
-		"title": "climb to L1/R1",
+		"title": "to horu map pedestal",
+		"x": 60,
+		"y": 340,
+		"variants":
+		[
+			{
+				"tags": "connection, precise",
+				"url": "https://oristorage.blob.core.windows.net/videos/tohorumap_cl_cj_ad_8d.mp4",
+				"requirements": "climb, charge jump, air dash, 8 damage",
+				"notes": "Kill the bottom elemental with a climb charge jump and airdash. Land on the dark friendly spikes below the elemental. Charge jump to the top right twice, taking damage once each, then charge jump and airdash to the map pedestal."
+			}
+		]
+	},{
+		"title": "to peak of horu",
 		"x": 70,
 		"y": 380,
 		"variants":
@@ -831,6 +844,11 @@
 				"url": "https://streamable.com/yynxzi",
 				"requirements": "bash, grenade",
 				"notes": "stay calm and bash things"
+			},{
+				"tags": "connection, precise",
+				"url": "https://oristorage.blob.core.windows.net/videos/horumaptotop_cl_cj_2cd_8d.mp4",
+				"requirements": "climb, charge jump, 2 charge dash, 8 damage",
+				"notes": "Kill the top elemental by making the bottom elemental shoot at it. Jump off the ledge to the right to bait a shot of the bottom elemental and gain some time. Airdash to the small wall to the left and climb charge jump as high as possible. Charge dash into the spikes to the right, then immediately start charging and land on the spikes. Charge jump while still having iframes. Charge dash to the left, where you will take damage again, and climb up."
 			}
 		]
 	},{
