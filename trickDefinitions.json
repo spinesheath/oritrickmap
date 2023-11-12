@@ -280,6 +280,70 @@
 			}
 		]
 	},{
+		"title": "grotto lasers plant",
+		"x": 437,
+		"y": -137,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://oristorage.blob.core.windows.net/videos/grottolaserplant_cf.mp4",
+				"requirements": "charge flame",
+				"notes": "Jump below the plant and break it with charge flame."
+			}
+		]
+	},{
+		"title": "experience above grotto teleporter",
+		"x": 551,
+		"y": -141,
+		"variants":
+		[
+			{
+				"tags": "pickup",
+				"url": "https://oristorage.blob.core.windows.net/videos/abovegrottotpexp_rj.mp4",
+				"requirements": "rocket jump",
+				"notes": "Break the floor, for example with a frog or spider projectile. Push the frog to the left, jump over and rocket jump from inside the hole in the ground."
+			}
+		]
+	},{
+		"title": "break roof between grotto and swamp drain",
+		"x": 590,
+		"y": -151,
+		"variants":
+		[
+			{
+				"tags": "connection",
+				"url": "https://oristorage.blob.core.windows.net/videos/breakgrottotodrain_cf.mp4",
+				"requirements": "charge flame",
+				"notes": "Push the frog to the right, jump over, make it shoot as high as possible without hitting the roof, then redirect the projectile with charge flame."
+			},{
+				"tags": "connection",
+				"url": "https://oristorage.blob.core.windows.net/videos/breakgrottotodrain_cf_dj.mp4",
+				"requirements": "charge flame, double jump",
+				"notes": "Double jump to get the spider shoot roughly horizontally, then follow the projectile and redirect it with charge flame."
+			},{
+				"tags": "connection",
+				"url": "https://oristorage.blob.core.windows.net/videos/breakgrottotodrain_st.mp4",
+				"requirements": "stomp",
+				"notes": "Push the frog to the right, jump over, make it shoot as high as possible without hitting the roof, then redirect the projectile with stomp."
+			},{
+				"tags": "connection",
+				"url": "https://oristorage.blob.core.windows.net/videos/breakgrottotodrain_dj_st.mp4",
+				"requirements": "double jump, stomp",
+				"notes": "Double jump to get the spider shoot roughly horizontally, then follow the projectile and redirect it with stomp."
+			},{
+				"tags": "connection",
+				"url": "https://oristorage.blob.core.windows.net/videos/breakgrottotodrain_gr.mp4",
+				"requirements": "grenade",
+				"notes": "Push the frog to the right, jump over. Prepare three grenades. Make the frog shoot as high as possible without hitting the roof, then redirect the projectile by throwing another grenade which will detonate the first."
+			},{
+				"tags": "connection",
+				"url": "https://oristorage.blob.core.windows.net/videos/breakgrottotodrain_dj_gr.mp4",
+				"requirements": "double jump, grenade",
+				"notes": "Double jump to get the spider shoot roughly horizontally, then follow the projectile. Throw three grenades, then throw a fourth when the projectile is above the first grenade. This will detonate the first grenade and redirect the projectile."
+			}
+		]
+	},{
 		"title": "valley entry plant",
 		"x": -180,
 		"y": -80,
@@ -875,24 +939,6 @@
 				"url": "https://streamable.com/wktbsy",
 				"requirements": "none",
 				"notes": "time your drop precisely and run"
-			}
-		]
-	},{
-		"title": "swamp drain access",
-		"x": 590,
-		"y": -150,
-		"variants":
-		[
-			{
-				"tags": "connection",
-				"url": "https://streamable.com/r4gii0",
-				"requirements": "stomp",
-				"notes": "push frog over, redirect projectile with stomp"
-			},{
-				"tags": "connection",
-				"url": "https://streamable.com/ss1jqn",
-				"requirements": "stomp",
-				"notes": "push frog over, redirect projectile with grenade"
 			}
 		]
 	},{
